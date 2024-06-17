@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: Example API
+  title: Cards API
 paths:
   /cards:
     get:
@@ -54,8 +54,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         200:
           content:
@@ -77,8 +76,7 @@ components:
             - id
           properties:
             id:
-              type: integer
-              format: int64
+              type: string
 
     NewCard:
       required:
