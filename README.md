@@ -9,7 +9,9 @@ tool.
 
 * server-side boilerplate
 * client API boilerplate
-* HTTP models.
+* HTTP models
+* Middleware support
+* Custom templates
 
 ## Why?
 
@@ -27,56 +29,50 @@ tool.
 
 ## How?
 
+### Binary
+
 ```shell
 # binary install
 go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest
 
 oapi-codegen --help
-Usage of oapi-codegen:
-  -alias-types
-    	Alias type declarations of possible.
-  -config string
-    	A YAML config file that controls oapi-codegen behavior.
-  -exclude-operation-ids string
-    	Exclude operations with the given operation-ids. Comma-separated list of operation-ids.
-  -exclude-schemas string
-    	A comma separated list of schemas which must be excluded from generation.
-  -exclude-tags string
-    	Exclude operations that are tagged with the given tags. Comma-separated list of tags.
-  -generate string
-    	Comma-separated list of code to generate; valid options: "types", "client", "chi-server", "server", "gin", "gorilla", "spec", "skip-fmt", "skip-prune", "fiber", "iris", "std-http". (default "types,client,server,spec")
-  -h	Same as -help.
-  -help
-    	Show this help and exit.
-  -import-mapping string
-    	A dict from the external reference to golang package path.
-  -include-operation-ids string
-    	Only include operations with the given operation-ids. Comma-separated list of operation-ids.
-  -include-tags string
-    	Only include operations with the given tags. Comma-separated list of tags.
-  -initialism-overrides
-    	Use initialism overrides.
-  -o string
-    	Where to output generated code, stdout is default.
-  -old-config-style
-    	Whether to use the older style config file format.
-  -output-config
-    	When true, outputs a configuration file for oapi-codegen using current settings.
-  -package string
-    	The package name for generated code.
-  -response-type-suffix string
-    	The suffix used for responses types.
-  -templates string
-    	Path to directory containing user templates.
-  -version
-    	When specified, print version and exit.
 ```
 
+### Go generate
+
+1. use `tools.go` to install the dependencies
+2. create go file with
+   ```go
+   package gen
+ 
+   //go:generate go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen --config=config.yaml ../../api.yaml
+
+   ```
+3. run `go generate ./...`
+
+## Generated Code
+
+OpenAPI Spec: [api.yaml](api.yaml)
+
 ### Server
+
+Support List
+
+* Chi
+* Echo
+* Fiber
+* Gin
+* gorilla/mux
+* Iris
+* 1.22+ net/http
 
 ```shell
 oapi-codegen -generate std-http -package gen -o gen/std-server.gen.go api.yaml
 ```
+
+It
+renders [std-http-middleware.tmpl](https://github.com/oapi-codegen/oapi-codegen/blob/main/pkg/codegen/templates/stdhttp/std-http-middleware.tmpl)
+based on the OpenAPI specification.
 
 ### Client
 
@@ -90,5 +86,14 @@ oapi-codegen -generate client -package gen -o gen/client.gen.go api.yaml
 oapi-codegen -generate types -package gen -o gen/models.gen.go api.yaml
 ```
 
+## Integration
+
+## Update service (non-breaking change)
+
+* Add new endpoints
+* Adding new request parameter
+* Adding new response fields
+
 ## Customization
 
+## Q&A
