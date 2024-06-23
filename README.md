@@ -29,7 +29,7 @@ tool.
 
 ## How?
 
-### Binary
+### 1. Binary
 
 ```shell
 # binary install
@@ -38,7 +38,7 @@ go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest
 oapi-codegen --help
 ```
 
-### Go generate
+### 2. Go generate
 
 1. use `tools.go` to install the dependencies
 2. create go file with
@@ -106,7 +106,7 @@ oapi-codegen -generate client -package api -o gen/client.gen.go api.yaml
 
 ## Customization
 
-1. [OpenAPI extensions](https://github.com/oapi-codegen/oapi-codegen/tree/main?tab=readme-ov-file#openapi-extensions)
+1. [OpenAPI extensions](https://github.com/oapi-codegen/oapi-codegen/tree/main?tab=readme-ov-file#openapi-extensions) (Live demo)
 2. [Custom code generation](https://github.com/oapi-codegen/oapi-codegen/tree/main?tab=readme-ov-file#custom-code-generation)
 
 ## Q&A
