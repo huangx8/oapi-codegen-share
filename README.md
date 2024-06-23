@@ -50,9 +50,19 @@ oapi-codegen --help
    ```
 3. run `go generate ./...`
 
+Example: [Makefile](./Makefile)
+
 ## Generated Code
 
-OpenAPI Spec: [api.yaml](api.yaml)
+OpenAPI Spec: [api.yaml](./api.yaml)
+
+### Models
+
+```shell
+oapi-codegen -generate types -package api -o gen/models.gen.go api.yaml
+```
+
+![models](./imgs/models.png)
 
 ### Server
 
@@ -67,33 +77,36 @@ Support List
 * 1.22+ net/http
 
 ```shell
-oapi-codegen -generate std-http -package gen -o gen/std-server.gen.go api.yaml
+oapi-codegen -generate std-http -package api -o gen/std-server.gen.go api.yaml
 ```
 
 It
 renders [std-http-middleware.tmpl](https://github.com/oapi-codegen/oapi-codegen/blob/main/pkg/codegen/templates/stdhttp/std-http-middleware.tmpl)
 based on the OpenAPI specification.
 
+![server](./imgs/server.png)
+
 ### Client
 
 ```shell
-oapi-codegen -generate client -package gen -o gen/client.gen.go api.yaml
-```
-
-### Models
-
-```shell
-oapi-codegen -generate types -package gen -o gen/models.gen.go api.yaml
+oapi-codegen -generate client -package api -o gen/client.gen.go api.yaml
 ```
 
 ## Integration
 
+### Server
+
+![server integration](./imgs/server_integration.png)
+
 ## Update service (non-breaking change)
 
-* Add new endpoints
+* Add new endpoints (Live demo)
 * Adding new request parameter
 * Adding new response fields
 
 ## Customization
+
+1. [OpenAPI extensions](https://github.com/oapi-codegen/oapi-codegen/tree/main?tab=readme-ov-file#openapi-extensions)
+2. [Custom code generation](https://github.com/oapi-codegen/oapi-codegen/tree/main?tab=readme-ov-file#custom-code-generation)
 
 ## Q&A
