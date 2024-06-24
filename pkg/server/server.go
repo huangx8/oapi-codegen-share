@@ -21,6 +21,7 @@ func NewServer() *CardCenter {
 }
 
 func (c *CardCenter) ListCards(w http.ResponseWriter, r *http.Request, params api.ListCardsParams) {
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	_ = json.NewEncoder(w).Encode(c.Store)
 }
@@ -36,6 +37,7 @@ func (c *CardCenter) AddCard(w http.ResponseWriter, r *http.Request) {
 	card := api.Card{Id: uuid.NewString(), Owner: newCard.Owner}
 	c.Store = append(c.Store, card)
 
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	_ = json.NewEncoder(w).Encode(card)
 }
@@ -43,11 +45,13 @@ func (c *CardCenter) AddCard(w http.ResponseWriter, r *http.Request) {
 func (c *CardCenter) FindCardByID(w http.ResponseWriter, r *http.Request, id string) {
 	idx := slices.IndexFunc(c.Store, func(c api.Card) bool { return c.Id == id })
 	if idx != -1 {
+		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_ = json.NewEncoder(w).Encode(c.Store[idx])
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusNotFound)
 	_ = json.NewEncoder(w).Encode(map[string]string{"error": "card not found"})
 }

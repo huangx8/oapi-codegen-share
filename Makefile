@@ -8,3 +8,6 @@ generate:
 
 run:
 	go run main.go
+
+client:
+	go run client.go
