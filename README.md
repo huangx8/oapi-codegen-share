@@ -92,11 +92,19 @@ based on the OpenAPI specification.
 oapi-codegen -generate client -package api -o gen/client.gen.go api.yaml
 ```
 
+Template: [client.tmpl](https://github.com/oapi-codegen/oapi-codegen/blob/main/pkg/codegen/templates/client.tmpl)
+
+![client](./imgs/client.png)
+
 ## Integration
 
 ### Server
 
 ![server integration](./imgs/server_integration.png)
+
+### Client
+
+![server integration](./imgs/client_integration.png)
 
 ## Update service (non-breaking change)
 
@@ -106,7 +114,8 @@ oapi-codegen -generate client -package api -o gen/client.gen.go api.yaml
 
 ## Customization
 
-1. [OpenAPI extensions](https://github.com/oapi-codegen/oapi-codegen/tree/main?tab=readme-ov-file#openapi-extensions) (Live demo)
+1. [OpenAPI extensions](https://github.com/oapi-codegen/oapi-codegen/tree/main?tab=readme-ov-file#openapi-extensions) (
+   Live demo)
 2. [Custom code generation](https://github.com/oapi-codegen/oapi-codegen/tree/main?tab=readme-ov-file#custom-code-generation)
 
 ## Q&A
