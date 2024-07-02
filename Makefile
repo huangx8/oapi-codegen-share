@@ -11,3 +11,6 @@ run:
 
 client:
 	go run client.go
+
+tests:
+	./tests.sh

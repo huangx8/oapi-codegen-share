@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 echo "current cards"
 curl http://localhost:8888/cards
 
